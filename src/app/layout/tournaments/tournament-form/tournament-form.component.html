@@ -1,0 +1,23 @@
+<div class="card">
+  <div class="card-header">
+    <strong>Crear Torneo</strong>
+  </div>
+  <div class="card-block">
+    <div class="form-inline">
+      <input class="form-control col-sm-9" type="text" placeholder="Nombre del torneo?" [(ngModel)]="tournament.title" required
+        minlength="2" maxlength="23" #title='ngModel' autofocus>
+      <div *ngIf="!tournament.$key; then thenTemplate; else elseTemplate"></div>
+    </div>
+  </div>
+</div>
+
+<ng-template #thenTemplate>
+  <button type="button" class="btn btn-success offset-sm-1 col-sm-2" (click)="createTournament()" [disabled]="!title.valid">Crear</button>
+</ng-template>
+<ng-template #elseTemplate>
+  <div class="form-inline">
+    <button type="button" class="btn btn-warning" (click)="updateTournament()" [disabled]="!title.valid">Editar</button>
+    <button type="button" class="btn btn-danger" (click)="cancel()">Cancel</button>
+  </div>
+
+</ng-template>

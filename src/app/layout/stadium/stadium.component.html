@@ -1,0 +1,111 @@
+
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <strong>Agregar</strong>
+        </div>
+        <div class="card-block">
+          <form #formStadium="ngForm" (ngSubmit)="onSubmit(); formStadium.reset()">
+            <div class="row">
+              <div class="col-sm-2">
+                <div class="form-group">
+                  <label for="name">Nombre</label>
+                  <!--<input type="text" class="form-control" id="name" placeholder="Nombre de la ancha">-->
+                  <input class="form-control" type="text" id="name" name="name" #name="ngModel" [(ngModel)]="stadium.name" required placeholder="Nombre de la cancha">
+                  <span *ngIf="name.touched && !name.valid">
+                    El nombre de la cancha es incorrecto!
+                  </span>
+                </div>
+              </div>
+              <div class="col-sm-1">
+                <div class="form-group">
+                  <label for="color">Color</label>
+                  <!--<input type="color" class="form-control" id="color">-->
+                  <input class="form-control" type="color" name="color" id="color" #color="ngModel" [(ngModel)]="stadium.color" required>
+                  <span *ngIf="color.touched && !color.valid" pattern="0[xX][0-9a-fA-F]+">
+                    El color es incorrecto!
+                </span>
+                </div>
+              </div>
+              <div class="col-sm-1">
+                <div class="form-group">
+                  <label class="label-blank"></label>
+                  <button type="submit" class="form-control btn-primary">Guardar</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-align-justify"></i> {{title}}
+        </div>
+        <div class="card-block">
+          <table class="table table-bordered table-striped table-condensed">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Color</th>
+                <th>Estatus</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let stadium of stadiums | async">
+                <td>{{stadium.name}}</td>
+                <td><div class="color-span" [style.background]="stadium.color"></div></td>
+                <td>
+                  <label class="switch switch-text switch-pill switch-success">
+                    <input type="checkbox" name="active" [checked]="stadium.active" value="true" (click)="changeStatus($event,stadium.$key)"  class="switch-input">
+                    <span class="switch-label switch-label-70" data-on="Activo" data-off="Inactivo"></span>
+                    <span class="switch-handle-50 switch-handle"></span>
+                  </label>
+                  <!--<span class="badge badge-success">Active</span>
+                  <span class="badge badge-danger">Banned</span>
+                   <span class="badge badge-default">Inactive</span>
+                   <span class="badge badge-warning">Pending</span>
+                  -->
+                </td>
+                <td><button class="btn btn-secondary" data-toggle="modal" type="button">
+                  Launch large modal
+                </button></td>
+                <td><a href="" data-toggle="modal"  (click)="largeModal.show()"><i class="fa fa-trash fa-lg mt-2"></i></a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div aria-hidden="true" aria-labelledby="myModalLabel" bsmodal="" class="modal fade" role="dialog" tabindex="-1" style="display: none;">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Modal title</h4>
+        <button aria-label="Close" class="close" type="button">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>One fine body…</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button">Close</button>
+        <button class="btn btn-primary" type="button">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="card">
+  <div class="card-header">
+    <strong>Crear Equipos</strong>
+  </div>
+  <div class="card-block">
+    <div class="form-group ">
+      <app-upload (fileEmit)="handleImageUoload($event)"></app-upload>
+    </div>
+    <div class="form-inline">
+      <input name="title" class="form-control col-sm-6" type="text" placeholder="Nombre del equipo?" [(ngModel)]="team.title" required
+        minlength="2" maxlength="23" #title='ngModel' autofocus>
+         <div *ngIf="!team.$key; then thenTemplate; else elseTemplate"></div>
+    </div>
+  </div>
+</div>
+
+<ng-template #thenTemplate>
+  <button class="success button offset-sm-1 col-sm-2" (click)="createTeam()" [disabled]="!title.valid">Crear</button>
+</ng-template>
+<ng-template #elseTemplate>
+  <div class="form-inline">
+    <button type="button" class="btn btn-warning" (click)="update()" [disabled]="!title.valid">Editar</button>
+    <button type="button" class="btn btn-danger" (click)="cancel()">Cancel</button>
+  </div>
+
+</ng-template>

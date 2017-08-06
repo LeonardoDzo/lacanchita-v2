@@ -1,0 +1,17 @@
+<div [@routerTransition]>
+  <div class="row">
+    <div class="fb-profile">
+      <img align="left" class="fb-image-lg" src="./assets/images/coverTeams.jpg" alt="Profile image example" />
+      <img align="left" class="fb-image-profile thumbnail" [src]="team.imageUrl" alt="Profile image example" />
+      <div class="fb-profile-text">
+        <h1>{{team.title}}</h1>
+        <p>Somos los mejores!</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="team" class="container">
+  <div class="col-sm-12">
+    <!--<app-player [team]="team"></app-player>-->
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="card">
+  <div class="card-block">
+    <form (ngSubmit)="onSubmit()" #Form="ngForm">
+      <div class="form-group">
+        <label for="name">Titulo de la jornada</label>
+        <input class="form-control" id="name" type="text" placeholder="Titulo?" [(ngModel)]="journey.title" name="title" required
+          minlength="2" maxlength="23" #title='ngModel' autofocus>
+        <div *ngIf="title.errors && (title.dirty || title.touched)" class="alert alert-danger">
+          <div [hidden]="!title.errors.required">
+            Titulo es requerido.
+          </div>
+          <div [hidden]="!title.errors.minlength">
+            El minimo del nombre son 4 caracteres.
+          </div>
+          <div [hidden]="!title.errors.maxlength">
+            El maximo de caracateres son 20.
+          </div>
+        </div>
+      </div>
+      <div *ngIf="!journey.$key; then thenTemplate; else elseTemplate"></div>
+    </form>
+  </div>
+  
+</div>
+
+<ng-template #thenTemplate>
+  <button type="submit" class="btn btn-success" [disabled]="!Form.form.valid">Crear</button>
+  <button type="button" class="btn btn-default" (click)="newJourney(); Form.reset()">Nueva Liga</button>
+</ng-template>
+<ng-template #elseTemplate>
+  <div class="form-inline">
+    <button type="button" class="btn btn-warning" (click)="update()" [disabled]="!title.valid">Editar</button>
+    <button type="button" class="btn btn-danger" (click)="cancel()">Cancel</button>
+  </div>
+</ng-template>

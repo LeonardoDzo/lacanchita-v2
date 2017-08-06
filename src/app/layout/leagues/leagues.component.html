@@ -1,0 +1,12 @@
+<div [@routerTransition]>
+   <app-page-header [heading]="'Forms'" [icon]="'fa-edit'"></app-page-header>
+  <div class="row">
+    <h2> Ligas de <b>'todos los torneos'</b></h2>
+  </div>
+  <hr>
+   <div class="row align-items-center">
+      <div *ngFor="let league of leagues">
+        <app-league-item class="rounded" [league]='league'></app-league-item>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+
+<div [@routerTransition] *ngIf="matches">
+    <app-match-form [teams]="teams" [matches]="matches"></app-match-form>
+</div>
+<div class="container">
+    <div class="card-group" >
+        <app-match-item *ngFor="let match of matches" [match]="match"></app-match-item>
+    </div>
+
+</div>

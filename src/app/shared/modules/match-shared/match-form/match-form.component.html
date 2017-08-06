@@ -1,0 +1,52 @@
+<md-card>
+  <div class="row">
+    <div class="col-sm-12">
+        <bs-sortable [(ngModel)]="teams" [ngModelOptions]="{standalone: true}" [itemTemplate]="itemTemplate" itemClass="sortable-item"
+          itemActiveClass="sortable-item-active" placeholderItem="Drag here" placeholderClass="sortable-item" wrapperClass="sortable-wrapper"></bs-sortable>
+      </div>
+  </div>
+  <div class="row align-self-center">
+    <div class="row align-self-center">
+      
+      <div class="col-sm-3 centerDiv">
+        <bs-sortable [(ngModel)]="team1" max=1 [ngModelOptions]="{standalone: true}" [itemTemplate]="itemTemplate" fieldName="title"
+          itemClass="sortable-item" itemActiveClass="sortable-item-active" placeholderItem="team1" placeholderClass="sortable-item"
+          wrapperClass="sortable-wrapper"></bs-sortable>
+      </div>
+      <div class="col-sm-3 align-self-center">
+        <form (ngSubmit)="onSubmit()" #Form="ngForm">
+          <div class="form-group" align="center">
+            <div class="form-group example-full-width">
+              <label for="referi">Arbitro</label>
+              <input type="text" class="form-control" placeholder="Arbitro" id="referi" required [(ngModel)]="match.referi" name="referi"
+                minlength="4" maxlength="20" #referi="ngModel">
+              <div *ngIf="referi.errors && (referi.dirty || referi.touched)" class="alert alert-danger">
+                <div [hidden]="!referi.errors.required">
+                  Nombre es requerido.
+                </div>
+              </div>
+            </div>
+            <md-select class="example-full-width" class="form-control" required *ngIf="stadiums" [(ngModel)]="match.stadium" name="stadium">
+              <md-option *ngFor="let stadium of stadiums" [value]="stadium.$key">{{ stadium.name }}</md-option>
+            </md-select>
+            <div class="form-group example-full-width">
+              <label for="startDate">Fecha Inicio del Partido</label>
+              <input type="datetime-local" class="form-control" required id="startDate" [(ngModel)]="match.startDate" name="startDate">
+            </div>
+        </div>
+       <button type="submit" class="btn btn-success" [disabled]="!Form.form.valid">Crear</button>
+       </form>
+      </div>
+      <div class="col-sm-3 centerDiv">
+            <bs-sortable [(ngModel)]="team2" [ngModelOptions]="{standalone: true}" [itemTemplate]="itemTemplate" fieldName="title" itemClass="sortable-item"
+              itemActiveClass="sortable-item-active" placeholderItem="Drag here" placeholderClass="sortable-item" wrapperClass="sortable-wrapper"></bs-sortable>
+      </div>
+
+    </div>
+
+  </div>
+</md-card>
+
+<template #itemTemplate let-item="item" class="sortable-item" let-index="index">
+    <app-team-pick [team]="item.value"></app-team-pick>
+</template>

@@ -1,0 +1,15 @@
+<div *ngIf="league" class="card">
+  <div class="card-block">
+    <div *ngIf="!selected; then thenTemplate; else elseTemplate"></div>
+  </div>
+</div>
+
+<ng-template #thenTemplate>
+  <h3 class="card-title">{{journey.title}}</h3>
+  <button type="button" class="btn btn-info" (click)="onSelect(journey)">Entrar</button>
+  <button type="button" class="btn btn-warning" (click)="onEdit(journey)">Editar</button>
+  <button type="button" class="btn btn-danger" (click)='deleteItem()'>Eliminar</button>
+</ng-template>
+<ng-template #elseTemplate>
+  <app-futbol-day-form [journey]='journey' [league]='league' (objEmmit)='updated($event)'></app-futbol-day-form>
+</ng-template>

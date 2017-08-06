@@ -1,0 +1,79 @@
+<div class="card">
+  <div *ngIf="!league.$key; then thenTemplateHeader; else elseTemplateHeader" class="card-header"></div>
+  <div class="card-block">
+    <form (ngSubmit)="onSubmit()" #Form="ngForm">
+      <div class="form-group">
+        <label for="name">Titulo</label>
+        <input type="text" class="form-control" id="name" required [(ngModel)]="league.title" minlength="4" maxlength="20" name="title"
+          #title="ngModel">
+        <div *ngIf="title.errors && (title.dirty || title.touched)" class="alert alert-danger">
+          <div [hidden]="!title.errors.required">
+            Nombre es requerido.
+          </div>
+          <div [hidden]="!title.errors.minlength">
+            El minimo del nombre son 4 caracteres.
+          </div>
+          <div [hidden]="!title.errors.maxlength">
+            El maximo de caracateres son 20.
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="teamQ">Número de equipos que pasa</label>
+        <input type="number" class="form-control" id="teamQ" required [(ngModel)]="league.teamsQualifiers" max="20" min="2" name="teamQ"
+          #teamQ="ngModel">
+        <div [hidden]="teamQ.valid || teamQ.pristine" class="alert alert-danger">
+          El número de equipos es requerido
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="startDate">Fecha Inicio</label>
+        <input type="date" class="form-control" required id="startDate" [(ngModel)]="league.startDate" name="startDate">
+      </div>
+      <div class="form-group">
+        <label for="gameDay">Día del juego</label>
+        <select class="form-control" id="gameDay" required [(ngModel)]="league.gameDay" name="gameDay">
+         <option value="monday">Lunes</option>
+         <option value="tuesday">Martes</option>
+         <option value="wednesday">Miercoles</option>
+         <option value="thursday">Jueves</option>
+         <option value="friday">Viernes</option>
+         <option value="saturday">Sabado</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="gameDuration">Duración de Juego</label>
+        <input type="time" class="form-control" required id="gameDuration" [(ngModel)]="league.gameDuration" name="gameDuration">
+      </div>
+      <div class="form-group">
+        <label for="timeFirstGame">Hora Inicio del primer juego</label>
+        <input type="time" class="form-control" required id="timeFirstGame" [(ngModel)]="league.timeFirstGame" name="timeFirstGame">
+      </div>
+      <div class="form-group">
+        <label for="timeLastGame">Hora Inicio del ultimo juego</label>
+        <input type="time" class="form-control" required id="timeLastGame" [(ngModel)]="league.timeLastGame" name="timeLastGame">
+      </div>
+      <div *ngIf="!league.$key; then thenTemplate; else elseTemplate"></div>
+    </form>
+  </div>
+</div>
+
+
+<ng-template #thenTemplateHeader>
+  <strong>Crear Liga</strong>
+</ng-template>
+<ng-template #elseTemplateHeader>
+  <strong>Actualizar Liga</strong>
+</ng-template>
+
+<ng-template #thenTemplate>
+  <button type="submit" class="btn btn-success" [disabled]="!Form.form.valid">Crear</button>
+  <button type="button" class="btn btn-default" (click)="newLeague(); Form.reset()">Nueva Liga</button>
+</ng-template>
+<ng-template #elseTemplate>
+  <div class="form-inline">
+    <button type="button" class="btn btn-warning" (click)="update()" [disabled]="!title.valid">Editar</button>
+    <button type="button" class="btn btn-danger" (click)="cancel()">Cancel</button>
+  </div>
+</ng-template>

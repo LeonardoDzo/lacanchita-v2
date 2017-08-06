@@ -1,0 +1,27 @@
+
+<md-card class="example-card">
+  <md-card-header>
+    <md-card-title>{{team.title}}</md-card-title>
+  </md-card-header>
+  <img class="md-card-image example-header-image" style="width:150px; height:150px;" onerror="this.src='./assets/images/none.png'"
+    [src]="team.imageUrl" alt="user avatar" >
+  <md-card-content>
+  </md-card-content>
+  <md-card-actions>
+   <button md-button (click)="onSelect()">Entrar</button>
+   <button md-button (click)="onEdit(editTeam)">Editar</button>
+   <button md-button (click)="delete()">Eliminar</button>
+  </md-card-actions>
+</md-card>
+
+<ng-template #editTeam let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Editar equipo</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <app-team-form [team]='team' (objEmmit)="updated($event)"></app-team-form>
+  </div>
+</ng-template>

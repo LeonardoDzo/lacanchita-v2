@@ -1,0 +1,20 @@
+<div [@routerTransition] *ngIf="tournament" >
+  <app-page-header [heading]="tournament.title" [icon]="'fa-table'"></app-page-header>
+  <ngb-accordion #acc="ngbAccordion" activeIds="">
+    <ngb-panel title="Crear Liga">
+      <ng-template ngbPanelContent>
+        <div class="row align-items-start">
+          <div class="col">
+            <app-league-form [tournament]='tournament'></app-league-form>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-panel>
+  </ngb-accordion>
+  <hr>
+  <div class="row align-items-center">
+      <div *ngFor="let league of leagues">
+        <app-league-item class="rounded" [league]='league'></app-league-item>
+      </div>
+  </div>
+</div>

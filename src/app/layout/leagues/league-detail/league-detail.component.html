@@ -1,0 +1,27 @@
+<div [@routerTransition] *ngIf="league" class="container">
+  <h1>
+   Liga <b>{{league.title || '' }}</b>
+  </h1>
+  <md-tab-group>
+    <md-tab label="Jornadas">
+      <div class="container">
+        <app-futbol-day [league]="league">cargando</app-futbol-day>
+      </div>
+    </md-tab>
+    <md-tab label="Equipos">
+      <div class="row">
+        <h1 *ngIf="!league">
+          <b>Todas los Equipos</b>
+        </h1>
+      </div>
+      <div *ngIf="league" class="row">
+        <app-team-form [league]='league'></app-team-form>
+      </div>
+      <div class="row align-items-center">
+        <div *ngFor="let team of teams">
+          <app-team-item [team]='team'></app-team-item>
+        </div>
+      </div>
+    </md-tab>
+  </md-tab-group>
+</div>

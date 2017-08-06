@@ -1,0 +1,18 @@
+<div [@routerTransition]>
+  <div class="row">
+
+    <h1 >
+      <b>Todos los Equipos</b>
+    </h1>
+   
+  </div>
+    <div class="row">
+      <app-team-form [league]='league'></app-team-form>
+    </div>
+    <div class="row align-items-center">
+      <div *ngFor="let team of teams">
+         <app-team-item [team]='team' >Loading..</app-team-item> 
+      </div>
+  </div>
+
+</div>
