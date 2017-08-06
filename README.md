@@ -1,4 +1,4 @@
-# SB Admin rewritten in Angular4 and Bootstrap 4
+# La canchita Admin con template de SB Admin rewritten in Angular4 and Bootstrap 4
 
 Simple Dashboard Admin App built using Angular 4 and Bootstrap 4
 
