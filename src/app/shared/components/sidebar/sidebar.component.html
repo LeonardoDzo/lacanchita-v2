@@ -12,8 +12,11 @@
         <a [routerLink]="['/teams']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-address-book"></i>&nbsp;{{ 'Equipos' | translate }}
         </a>
+        <a [routerLink]="['/matches']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-futbol-o" aria-hidden="true"></i>&nbsp;{{ 'Juegos' | translate }}
+        </a>
         <a [routerLink]="['/players']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-address-book"></i>&nbsp;{{ 'Jugadores' | translate }}
+            <i class="fa fa-users" aria-hidden="true"></i>&nbsp;{{ 'Jugadores' | translate }}
         </a>
         <div class="nested-menu">
             <a class="list-group-item" (click)="addExpandClass('pages')">

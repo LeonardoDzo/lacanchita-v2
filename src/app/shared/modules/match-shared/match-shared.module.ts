@@ -7,7 +7,7 @@ import { MatchPickComponent } from './match-pick/match-pick.component';
 import { StandingTeamComponent } from './standing-team/standing-team.component';
 import { SortableModule,CarouselModule } from 'ngx-bootstrap';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { MdOptionModule,MdSelectModule } from "@angular/material";
+import { MdOptionModule,MdSelectModule,MdInputModule, } from "@angular/material";
 
 @NgModule({
   imports: [
@@ -17,8 +17,8 @@ import { MdOptionModule,MdSelectModule } from "@angular/material";
     SortableModule.forRoot(),
     ReactiveFormsModule,
     MdOptionModule,
-    MdSelectModule
-    
+    MdSelectModule,
+    MdInputModule
   ],
   declarations: [MatchFormComponent, MatchItemComponent, MatchPickComponent, StandingTeamComponent],
   exports: [MatchFormComponent, MatchItemComponent, MatchPickComponent, StandingTeamComponent]

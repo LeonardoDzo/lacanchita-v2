@@ -1,0 +1,101 @@
+<div [@routerTransition] >
+  <div class="row centerDiv">
+    <div *ngIf="!alive; then thenTemplate; else elseTemplate"></div>
+  </div>
+  <div class="row align-items-center">
+    <div class="col-lg-4 float-right">
+      <div class="row centerDiv">
+        <h1>{{team1.title}}</h1>
+      </div>
+      <div class="row centerDiv">
+        <img [src]="team1.imageUrl" onerror="this.src='./assets/images/football-team-logo-default.jpg'" class="circular rounded float-center"
+          alt="user avatar">
+      </div>
+      <div class="row align-items-center">
+
+      </div>
+
+    </div>
+
+    <div class="col-lg-4 ">
+      <div class="row align-items-center">
+        <div class="col-lg-4">
+            <input mdInput class="bigClass" [(ngModel)]="match.result1" type="number" min="0">
+        </div>
+        <div class="col-lg-4">
+          <h1>VS</h1>
+        </div>
+        <div class="col-lg-4">
+            <input mdInput class="bigClass" [(ngModel)]="match.result2" type="number" min="0">
+        </div>
+      </div>
+      <div class="row centerDiv">
+        <label class="switch">
+            <input [(ngModel)]="match.done" type="checkbox">
+            <div class="slider"></div>
+          </label>
+      </div>
+      <hr>
+      <div class="row centerDiv">
+        <button md-raised-button (click)="update()">Capturar Resultado</button>
+      </div>
+
+    </div>
+    <div class="col-lg-4 float-left">
+      <div class="row centerDiv">
+        <h1>{{team2.title}}</h1>
+      </div>
+      <div class="row centerDiv">
+        <img [src]="team2.imageUrl" onerror="this.src='./assets/images/football-team-logo-default.jpg'" class="circular rounded float-center"
+          alt="user avatar">
+      </div>
+      <div class="row centerDiv">
+      </div>
+    </div>
+  </div>
+  <div *ngIf="team1.$key && team2.$key" class="row align-items-start">
+    <div class="col-lg-6">
+      <app-standing-team [capturate]="capturate" [match]="match" [team]="team1"></app-standing-team>
+    </div>
+    <div class="col-lg-6">
+      <app-standing-team [capturate]="capturate" [match]="match" [team]="team2"></app-standing-team>
+    </div>
+  </div>
+
+</div>
+
+<ng-template #thenTemplate>
+  <md-chip-list>
+    <md-chip>Arbitro: {{match.referi}}</md-chip>
+    <md-chip>Fecha: {{match.startDate | date}}</md-chip>
+    <md-chip>Esadio {{stadium.name}}</md-chip>
+
+    <md-chip [color]="warn" (click)="onEdit()">Editar</md-chip>
+  </md-chip-list>
+</ng-template>
+<ng-template #elseTemplate>
+  <form (ngSubmit)="onSubmit()" #Form="ngForm">
+    <div class="form-group">
+      <label for="referi">Arbitro</label>
+      <input type="text" class="form-control" placeholder="Arbitro" id="referi" required [(ngModel)]="match.referi" name="referi"
+        minlength="4" maxlength="20" #referi="ngModel">
+      <div *ngIf="referi.errors && (referi.dirty || referi.touched)" class="alert alert-danger">
+        <div [hidden]="!referi.errors.required">
+          Nombre es requerido.
+        </div>
+      </div>
+    </div>
+    <md-select class="example-full-width" class="form-control" required *ngIf="stadiums" [(ngModel)]="match.stadium" name="stadium">
+      <md-option *ngFor="let stadium of stadiums" [value]="stadium.$key">{{ stadium.name }}</md-option>
+    </md-select>
+    <div class="form-group example-full-width">
+      <label for="startDate">Fecha Inicio del Partido</label>
+      <input type="datetime-local" class="form-control" required id="startDate" [(ngModel)]="match.startDate" name="startDate">
+    </div>
+    <div class="centerDiv">
+      <button md-raised-button type="submit">Editar</button>
+      <button md-raised-button (click)="onEdit()">Cancelar</button>
+    </div>
+
+  </form>
+</ng-template>

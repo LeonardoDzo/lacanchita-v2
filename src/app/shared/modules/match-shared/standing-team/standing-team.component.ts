@@ -20,7 +20,7 @@ export class StandingTeamComponent implements OnInit, OnChanges {
   @Input() capturate: Boolean = false;
   alive = false
 
-  standings: Standing[] 
+  standings: Standing[]
   players: Player[]
   constructor(private standingSvc: StandingService, private playerSvc: PlayerService) { }
   ngOnChanges(changes: SimpleChanges) {
@@ -28,17 +28,19 @@ export class StandingTeamComponent implements OnInit, OnChanges {
     //Add 'implements OnChanges' to the class.
     for (let p in changes) {
       let c = changes[p];
-      this.players.forEach(player => {
-        player.standing.player == player.$key
-        if (player.standing.$key) {
-          this.standingSvc.updateItem(player.standing.$key, player.standing, c => {
-            if (c) {
-            }
-          })
-        } else {
-          this.standingSvc.createItem(player.standing)
-        }
-      })
+      if (this.players) {
+        this.players.forEach(player => {
+          player.standing.player == player.$key
+          if (player.standing.$key) {
+            this.standingSvc.updateItem(player.standing.$key, player.standing, c => {
+              if (c) {
+              }
+            })
+          } else {
+            this.standingSvc.createItem(player.standing)
+          }
+        })
+      }
     }
 
   }
@@ -70,6 +72,5 @@ export class StandingTeamComponent implements OnInit, OnChanges {
   }
 
   onCapturate() {
-
   }
 }

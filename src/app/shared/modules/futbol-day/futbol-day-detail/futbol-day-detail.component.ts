@@ -55,6 +55,17 @@ export class FutbolDayDetailComponent implements OnInit {
         };
         this.matchSvc.getItemsList(query).subscribe((matches: Match[]) => {
           this.matches = matches
+          this.matches.forEach((match, index) => {
+        this.teamSvc.getItem(match.team1).subscribe(team => {
+          this.matches[index].team1 = team
+        })
+        this.teamSvc.getItem(match.team2).subscribe(team => {
+          this.matches[index].team2 = team
+        })
+        this.leagueSvc.getItem(match.league).subscribe(league => {
+          this.matches[index].league = league
+        })
+      })
         })
       })
 

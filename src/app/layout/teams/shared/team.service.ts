@@ -24,11 +24,14 @@ export class TeamService {
   }
   // Return a single observable item
   getItem(key: string): FirebaseObjectObservable<any> {
-    console.log(key)
-    const itemPath = `${this.basePath}/${key}`;
-    this.team = this.db.object(itemPath)
+    if (key.length > 0) {
+      const itemPath = `${this.basePath}/${key}`;
+      this.team = this.db.object(itemPath)
 
-    return this.team
+      return this.team
+    }
+
+
   }
 
   createItem(item: Team, lid: string = null): void {

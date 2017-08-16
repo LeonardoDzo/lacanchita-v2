@@ -1,3 +1,4 @@
+import { StandingService } from './matches/shared/standing.service';
 import { StadiumService } from './stadium/stadium.service';
 
 import { UploadService } from '../shared/modules/upload-module/upload/shared/upload.service';
@@ -11,10 +12,11 @@ import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
 import { HeaderComponent, SidebarComponent } from '../shared';
 import { TournamentService } from './tournaments/shared/tournament.service';
-import { MdCardModule } from '@angular/material';
+import { MdCardModule, MdSnackBarModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { MatchService } from './matches/shared/match.service';
 import { FutbolDayService } from '../shared/modules/futbol-day/shared/futbol-day.service';
+import { PlayerService } from './players/shared/player.service';
 
 @NgModule({
     imports: [
@@ -37,7 +39,9 @@ import { FutbolDayService } from '../shared/modules/futbol-day/shared/futbol-day
         MatchService, 
         FutbolDayService,
         UploadService,
-        StadiumService
+        StadiumService,
+        StandingService,
+        PlayerService
     ]
 
 })

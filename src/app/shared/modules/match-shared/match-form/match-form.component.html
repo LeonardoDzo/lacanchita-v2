@@ -5,15 +5,18 @@
           itemActiveClass="sortable-item-active" placeholderItem="Drag here" placeholderClass="sortable-item" wrapperClass="sortable-wrapper"></bs-sortable>
       </div>
   </div>
+    <hr>
+    <div class="center"><h2>Crear jornada</h2></div>
+    <hr>
   <div class="row align-self-center">
-    <div class="row align-self-center">
+    <div class="row align-self-center col-lg-12">
       
-      <div class="col-sm-3 centerDiv">
+      <div class="col-sm-4 centerDiv">
         <bs-sortable [(ngModel)]="team1" max=1 [ngModelOptions]="{standalone: true}" [itemTemplate]="itemTemplate" fieldName="title"
-          itemClass="sortable-item" itemActiveClass="sortable-item-active" placeholderItem="team1" placeholderClass="sortable-item"
+          itemClass="sortable-item" itemActiveClass="sortable-item-active" placeholderItem="Arrastra un equipo aquí" placeholderClass="sortable-item"
           wrapperClass="sortable-wrapper"></bs-sortable>
       </div>
-      <div class="col-sm-3 align-self-center">
+      <div class="col-sm-4 align-self-center">
         <form (ngSubmit)="onSubmit()" #Form="ngForm">
           <div class="form-group" align="center">
             <div class="form-group example-full-width">
@@ -37,16 +40,15 @@
        <button type="submit" class="btn btn-success" [disabled]="!Form.form.valid">Crear</button>
        </form>
       </div>
-      <div class="col-sm-3 centerDiv">
+      <div class="col-sm-4 centerDiv">
             <bs-sortable [(ngModel)]="team2" [ngModelOptions]="{standalone: true}" [itemTemplate]="itemTemplate" fieldName="title" itemClass="sortable-item"
-              itemActiveClass="sortable-item-active" placeholderItem="Drag here" placeholderClass="sortable-item" wrapperClass="sortable-wrapper"></bs-sortable>
+              itemActiveClass="sortable-item-active" placeholderItem="Arrastra un equipo aquí" placeholderClass="sortable-item" wrapperClass="sortable-wrapper"></bs-sortable>
       </div>
 
     </div>
 
   </div>
 </md-card>
-
 <template #itemTemplate let-item="item" class="sortable-item" let-index="index">
     <app-team-pick [team]="item.value"></app-team-pick>
 </template>

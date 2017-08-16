@@ -1,3 +1,38 @@
-<p>
-  standing-team works!
-</p>
+<table class="table table-hover table-responsive table-sm ">
+  <thead class="thead-inverse">
+    <tr>
+      <th>#</th>
+      <th>Nombre</th>
+      <th>Jugó?</th>
+      <th>GA</th>
+      <th>TR</th>
+      <th>TA</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let player of players">
+      <th scope="row">{{player.shirtNumber}}</th>
+      <td>{{player.name}}</td>
+      <td>
+        <div class="col align-self-end">
+          <input class="form-check-input" [(ngModel)]="player.standing.play" type="checkbox">
+        </div>
+      </td>
+      <td>
+        <div class="col align-self-center">
+          <input class="form-control" type="number" [(ngModel)]="player.standing.goals">
+        </div>
+      </td>
+      <td>
+        <div class="col align-self-center">
+          <input class="form-control" type="number" [(ngModel)]="player.standing.redCards">
+        </div>
+      </td>
+      <td>
+        <div class="col align-self-center">
+          <input class="form-control" type="number" [(ngModel)]="player.standing.yellowCards">
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

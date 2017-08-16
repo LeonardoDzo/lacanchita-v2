@@ -1,0 +1,28 @@
+
+<form class="form-inline mb-3">
+  <div class="form-group">
+    <div class="input-group">
+      <input class="form-control" name="term" placeholder="Buscar por equipo o liga" [(ngModel)]="term">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="input-group">
+      <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="startDate" ngbDatepicker #d="ngbDatepicker">
+      <div class="input-group-addon" (click)="d.toggle()">
+        <span class="fa fa-calendar"></span>
+      </div>
+    </div>
+  </div>
+   <div class="form-group">
+    <div class="input-group">
+      <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="endDate" ngbDatepicker #g="ngbDatepicker">
+      <div class="input-group-addon" (click)="g.toggle()">
+        <span class="fa fa-calendar"></span>
+      </div>
+    </div>
+  </div>
+</form>
+
+<div class="card-group" *ngIf="matches">
+  <app-match-item *ngFor="let match of matches | filter : term | startdate: startDate | enddate: endDate | sortBy: 'startDate'" [match]="match" class="col-lg-6"></app-match-item>
+</div>
