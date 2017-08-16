@@ -22,7 +22,6 @@
     </div>
   </div>
 </form>
-
 <div class="card-group" *ngIf="matches">
   <app-match-item *ngFor="let match of matches | filter : term | startdate: startDate | enddate: endDate | sortBy: 'startDate'" [match]="match" class="col-lg-6"></app-match-item>
 </div>
