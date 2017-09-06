@@ -1,18 +1,35 @@
 <div [@routerTransition]>
-  <div class="row">
-
-    <h1 >
-      <b>Todos los Equipos</b>
-    </h1>
-   
-  </div>
     <div class="row">
-      <app-team-form [league]='league'></app-team-form>
+        <md-tab-group>
+            <md-tab>
+                <ng-template md-tab-label>
+                    Equipos
+                </ng-template>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input class="form-control" name="term" placeholder="Buscar equipo" [(ngModel)]="term">
+                    </div>
+                </div>
+                <h1>
+                    <b>Todos los Equipos</b>
+                </h1>
+                <div class="row align-items-center">
+                    <div *ngFor="let team of teams | teamPipe : term">
+                        <app-team-item [team]='team'>Loading..</app-team-item>
+                    </div>
+                </div>
+            </md-tab>
+            <md-tab>
+                <ng-template md-tab-label>
+                    Agregar equipo
+                </ng-template>
+                <br><br>
+                <div class="row">
+                    <app-team-form [league]='league'></app-team-form>
+                </div>
+            </md-tab>
+        </md-tab-group>
+
     </div>
-    <div class="row align-items-center">
-      <div *ngFor="let team of teams">
-         <app-team-item [team]='team' >Loading..</app-team-item> 
-      </div>
-  </div>
 
 </div>

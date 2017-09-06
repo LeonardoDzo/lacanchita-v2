@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
@@ -14,6 +15,7 @@ import {
     ChatComponent
 } from './components';
 import { StatModule } from '../../shared';
+import { MdInputModule } from '@angular/material';
 
 @NgModule({
     imports: [
@@ -21,7 +23,9 @@ import { StatModule } from '../../shared';
         NgbCarouselModule.forRoot(),
         NgbAlertModule.forRoot(),
         DashboardRoutingModule,
-        StatModule,
+        MdInputModule,
+        FormsModule,
+        StatModule
     ],
     declarations: [
         DashboardComponent,

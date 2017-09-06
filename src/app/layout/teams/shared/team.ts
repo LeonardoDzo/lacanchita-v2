@@ -5,10 +5,11 @@ export class Team {
     $key: string;
     title: string;
     dateCreated: number;
-    active: boolean = true;
-    players: Player[] = [];
-    leagues: [any] = [null];
+    active = true;
+    players: any[] = [];
+    leagues: any[];
     imageUrl: string;
+    // tslint:disable-next-line:one-line
     constructor(){
         this.dateCreated =  new Date().getTime()
     }

@@ -30,7 +30,6 @@ import { PlayerService } from './players/shared/player.service';
         LayoutComponent,
         HeaderComponent,
         SidebarComponent
-        
     ],
     providers:  [
         LeagueService,

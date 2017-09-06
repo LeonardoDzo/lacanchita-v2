@@ -1,19 +1,34 @@
-<div class="card card-inverse {{bgClass}}">
-    <div class="card-header">
-        <div class="row">
-            <div class="col col-xs-3">
-                <i class="fa {{icon}} fa-5x"></i>
-            </div>
-            <div class="col col-xs-9 text-right">
-                <div class="d-block huge">{{count}}</div>
-                <div class="d-block">{{label}}</div>
-            </div>
-        </div>
+<div *ngIf="team" class="card card-style">
+    <img class="card-img-top" class="md-card-image example-header-image" style="max-height:200px; " onerror="this.src='./assets/images/none.png'"
+        [src]="team.imageUrl" alt="Card image cap">
+    <div class="card-block">
+        <h4 class="card-title">{{team.title}}</h4>
+        <span class="float-left">Activar</span>
+        <label class="float-right switch">
+             <input [(ngModel)]="team.active" type="checkbox">
+             <div class="slider"></div>
+        </label>    
+        <br>
+        <hr>
+        <table class="table">
+            <thead>
+                <tr>
+                <th>Liga</th>
+                <th>Activo</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let item of team.leagues">
+                <tr >
+                <td>{{item.name}}</td>
+                <td>
+                    <label class="float-right switch">
+                        <input [(ngModel)]="item.active" type="checkbox">
+                        <div class="slider"></div>
+                    </label>
+                </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-    <div class="card-footer">
-        <span class="float-left">View Details {{data}}</span>
-        <a href="javascript:void(0)" class="float-right card-inverse">
-            <span ><i class="fa fa-arrow-circle-right"></i></span>
-        </a>
-    </div>
+
 </div>

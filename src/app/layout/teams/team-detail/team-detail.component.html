@@ -1,17 +1,56 @@
-<div [@routerTransition]>
-  <div class="row">
-    <div class="fb-profile">
-      <img align="left" class="fb-image-lg" src="./assets/images/coverTeams.jpg" alt="Profile image example" />
-      <img align="left" class="fb-image-profile thumbnail" [src]="team.imageUrl" alt="Profile image example" />
-      <div class="fb-profile-text">
-        <h1>{{team.title}}</h1>
-        <p>Somos los mejores!</p>
-      </div>
-    </div>
-  </div>
+<div *ngIf="team" [@routerTransition]>
+    <md-tab-group>
+        <md-tab>
+            <ng-template md-tab-label>
+                Perfil
+            </ng-template>
+            <br><br>
+            <div class="row">
+                <div class="col-9">
+                    <h1>{{team.title}}</h1>
+                </div>
+                <div class="col-4"><img class="md-card-image example-header-image" style="width:150px; height:150px;" onerror="this.src='./assets/images/none.png'"
+                        [src]="team.imageUrl" alt="user avatar"></div>
+                <div class="col-6">
+                    <h4>Ligas en las que participa</h4>
+                    <div *ngFor="let l of leagues" class="row">
+                        <md-slide-toggle [checked]="team.leagues[l.$key]">
+                            {{l.title}}
+                        </md-slide-toggle>
+                    </div>
+                </div>
+            </div>
+        </md-tab>
+        <md-tab>
+            <ng-template md-tab-label>
+                Jugadores
+            </ng-template>
+            <br><br>
+            <div class="row">
+                <button class="btn btn-primary" (click)="open(content)">Agregar Jugador</button>
+            </div>
+            <hr>
+            <div class="row align-items-start">
+                <!--<div class="col box">
+                    <h4> Otros jugadores aquí</h4>
+                    <div class="row align-items-start">
+                        <md-card class="cardPlayer" *ngFor="let p of allPlayers">
+                            <app-player-item2 [player]=p></app-player-item2>
+                        </md-card>
+                    </div>
+                </div>-->
+                <div class="col box">
+                    Jugadores del equipo {{team.title}}
+                    <div class="row align-items-start">
+                        <md-card class="cardPlayer" *ngFor="let p of players">
+                            <app-player-item2 [player]=p></app-player-item2>
+                        </md-card>
+                    </div>
+                </div>
+            </div>
+        </md-tab>
+    </md-tab-group>
 </div>
-<div *ngIf="team" class="container">
-  <div class="col-sm-12">
-    <!--<app-player [team]="team"></app-player>-->
-  </div>
-</div>
+<ng-template #content let-c="close" let-d="dismiss">
+    <app-player-form (playerEmit)="playerCreated($event)"></app-player-form>
+</ng-template>

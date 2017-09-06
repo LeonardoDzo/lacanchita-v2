@@ -10,10 +10,11 @@ import { PlayerService } from '../../../../layout/players/shared/player.service'
 export class PlayerItemComponent implements OnInit {
 
   @Input() player: Player;
-  constructor(private playerSvc:PlayerService) { }
+  constructor(private playerSvc: PlayerService
+            ) { }
   ngOnInit() {
   }
-  delete(){
+  delete() {
     this.playerSvc.deleteItem(this.player.$key)
   }
 }

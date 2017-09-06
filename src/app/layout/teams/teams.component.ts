@@ -7,10 +7,11 @@ import { slideToTop } from '../../router.animations';
   selector: 'app-teams',
   templateUrl: './teams.component.html',
   styleUrls: ['./teams.component.scss'],
-  animations: [slideToTop()] 
+  animations: [slideToTop()]
 })
 export class TeamsComponent implements OnInit {
   teams: Team[];
+  term: string;
   constructor(private teamService: TeamService) { }
 
   ngOnInit() {

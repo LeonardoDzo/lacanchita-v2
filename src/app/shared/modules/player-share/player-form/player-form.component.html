@@ -1,9 +1,5 @@
 <div class="card text-center">
-  <div class="card-header">
-    Crear Jugador
-  </div>
   <div class="card-block">
-
     <div class="form-group ">
       <app-upload (fileEmit)="handleImageUoload($event)"></app-upload>
     </div>
@@ -40,8 +36,5 @@
       </div>
     </div>
     <button class="success button offset-sm-1 col-sm-2" (click)="createPlayer()">Crear</button>
-  </div>
-  <div class="card-footer text-muted">
-    <button class="btn btn-lg btn-outline-primary" (click)="generatePlayers()">Generar Jugador</button>
   </div>
 </div>

@@ -7,7 +7,7 @@ import { TeamService } from '../../teams/shared/team.service';
 @Injectable()
 export class PlayerService {
 
-  private basePath: string = '/players';
+  private basePath = '/players';
 
   players: FirebaseListObservable<any[]> = null; //  list of objects
   player: FirebaseObjectObservable<any>; //   single object
@@ -17,7 +17,7 @@ export class PlayerService {
 
    }
 
-  getItemsList(query={}): FirebaseListObservable<any[]> {
+  getItemsList(query= {}): FirebaseListObservable<any[]> {
     this.players = this.db.list(this.basePath, {
       query: query
     });
@@ -32,11 +32,10 @@ export class PlayerService {
     return this.player
   }
 
-  createItem(item: Player): void  {
+  createItem(item: Player, callback): void  {
     this.db.app.database().ref(this.basePath).push(item).then(res => {
-      var value = {}
-      value[res.key] =  true
-     // this.teamSvc.updateItem(tid, value)
+      item.$key = res.key
+      callback(item)
     })
     .catch(error => this.handleError(error))
   }
@@ -45,10 +44,16 @@ export class PlayerService {
     this.players.update(key, value)
       .catch(error => this.handleError(error))
   }
+  addTeam(key: string, value: any): void {
+    this.db.database.ref(`players/${key}/teams/`).update(value)
+      .catch(error => this.handleError(error))
+  }
 
   // Deletes a single item
   deleteItem(key: string): void {
-      this.players.remove(key)
+      const value = {}
+      value['active'] =  false
+      this.players.update(key, value)
         .catch(error => this.handleError(error))
   }
 

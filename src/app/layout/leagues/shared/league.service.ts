@@ -1,13 +1,13 @@
 import { duration } from 'moment';
 import { Injectable } from '@angular/core';
-import { FirebaseListObservable, FirebaseObjectObservable, AngularFireDatabase } from "angularfire2/database";
+import { FirebaseListObservable, FirebaseObjectObservable, AngularFireDatabase } from 'angularfire2/database';
 import { League } from './league';
 import { TournamentService } from '../../tournaments/shared/tournament.service';
 import * as firebase from 'firebase/app';
 @Injectable()
 export class LeagueService {
 
-  private basePath: string = '/leagues';
+  private basePath = '/leagues';
 
   leagues: FirebaseListObservable<any[]> = null; //  list of objects
   league: FirebaseObjectObservable<any>; //   single object
@@ -32,7 +32,7 @@ export class LeagueService {
 
   createItem(item: League): void {
     this.db.app.database().ref(this.basePath).push(item).then(res => {
-      var value = {}
+      const value = {}
       value[res.key] = true
       this.tournamentService.addLeague(item.tournamentId, value)
     })
@@ -46,25 +46,25 @@ export class LeagueService {
       })
       .catch(error => this.handleError(error))
   }
-  
   addTeam(key: string, value: any): void {
-    this.db.app.database().ref(this.basePath + "/" + key + "/teams").update(value).then(a => {
-      console.log("save team")
+    this.db.app.database().ref(this.basePath + '/' + key + '/teams').update(value).then(a => {
+      console.log('save team')
     }).catch(error => {
       this.handleError(error)
     })
   }
   deleteTeam(key: string, tid: string): void {
-    this.db.app.database().ref(this.basePath + "/" + key + "/teams/"+tid).remove( a => {
-      console.log("deleted team")
+    this.db.app.database().ref(this.basePath + '/' + key + '/teams/' + tid).remove( a => {
+      console.log('deleted team')
     }).catch(error => {
       this.handleError(error)
     })
   }
   // Deletes a single item
   deleteItem(key: string): void {
-    this.leagues.remove(key)
-      .catch(error => this.handleError(error))
+      this.db.database.ref(`${this.basePath}/${key}/active`).update(false)
+    // this.leagues.remove(key)
+    //   .catch(error => this.handleError(error))
   }
 
   // Deletes the entire list of items

@@ -23,19 +23,18 @@ export class TeamItemComponent implements OnInit {
   }
   onSelect() {
     this.router.navigate(['/teams', this.team.$key]);
-    
   }
   onEdit(content) {
      this.modalService.open(content).result.then((result) => {
-      //Button
+      // Button
     }, (reason) => {
-      //Background or esc
+      // Background or esc
     });
   }
-  updated(event){
+  updated(event) {
     this.team = event
   }
-  delete(){
-    this.teamSvc.deleteItem(this.team.$key, Object.keys(this.team.leagues)[0])
+  delete() {
+    this.teamSvc.deleteItem(this.team.$key)
   }
 }
