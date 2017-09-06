@@ -1,5 +1,5 @@
 
-<div class="animated fadeIn">
+<!--<div class="animated fadeIn">
   <div class="row">
     <div class="col-sm-12">
       <div class="card">
@@ -12,7 +12,6 @@
               <div class="col-sm-2">
                 <div class="form-group">
                   <label for="name">Nombre</label>
-                  <!--<input type="text" class="form-control" id="name" placeholder="Nombre de la ancha">-->
                   <input class="form-control" type="text" id="name" name="name" #name="ngModel" [(ngModel)]="stadium.name" required placeholder="Nombre de la cancha">
                   <span *ngIf="name.touched && !name.valid">
                     El nombre de la cancha es incorrecto!
@@ -22,7 +21,6 @@
               <div class="col-sm-1">
                 <div class="form-group">
                   <label for="color">Color</label>
-                  <!--<input type="color" class="form-control" id="color">-->
                   <input class="form-control" type="color" name="color" id="color" #color="ngModel" [(ngModel)]="stadium.color" required>
                   <span *ngIf="color.touched && !color.valid" pattern="0[xX][0-9a-fA-F]+">
                     El color es incorrecto!
@@ -71,11 +69,6 @@
                     <span class="switch-label switch-label-70" data-on="Activo" data-off="Inactivo"></span>
                     <span class="switch-handle-50 switch-handle"></span>
                   </label>
-                  <!--<span class="badge badge-success">Active</span>
-                  <span class="badge badge-danger">Banned</span>
-                   <span class="badge badge-default">Inactive</span>
-                   <span class="badge badge-warning">Pending</span>
-                  -->
                 </td>
                 <td><button class="btn btn-secondary" data-toggle="modal" type="button">
                   Launch large modal
@@ -108,4 +101,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

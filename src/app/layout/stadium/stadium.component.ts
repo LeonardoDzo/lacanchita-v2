@@ -10,7 +10,7 @@ import {jsonpFactory} from '@angular/http/src/http_module';
   selector: 'app-stadium',
   templateUrl: './stadium.component.html',
 
-  styleUrls: ['./stadium.component.css'],
+  styleUrls: ['./stadium.component.scss'],
   providers: [StadiumService]
 
 })
