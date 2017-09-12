@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Stadium } from './stadium';
 import {StadiumService} from './stadium.service';
-import { FirebaseListObservable, FirebaseObjectObservable, AngularFireDatabase } from "angularfire2/database";
+import { FirebaseListObservable, FirebaseObjectObservable, AngularFireDatabase } from 'angularfire2/database';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import {jsonpFactory} from '@angular/http/src/http_module';
 

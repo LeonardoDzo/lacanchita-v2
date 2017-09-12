@@ -35,7 +35,7 @@ import { PlayerService } from './players/shared/player.service';
         LeagueService,
         TournamentService,
         TeamService,
-        MatchService, 
+        MatchService,
         FutbolDayService,
         UploadService,
         StadiumService,

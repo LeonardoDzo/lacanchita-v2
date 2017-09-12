@@ -21,12 +21,12 @@ export function HttpLoaderFactory(http: Http) {
     return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
 }
 export const firebaseConfig = {
-  apiKey: "AIzaSyBSxsSnTSgo_NkWdSxzWxASplCh3GhClHg",
-  authDomain: "lacanchita-55caa.firebaseapp.com",
-  databaseURL: "https://lacanchita-55caa.firebaseio.com",
-  projectId: "lacanchita-55caa",
-  storageBucket: "lacanchita-55caa.appspot.com",
-  messagingSenderId: "187709839691"
+  apiKey: 'AIzaSyBSxsSnTSgo_NkWdSxzWxASplCh3GhClHg',
+  authDomain: 'lacanchita-55caa.firebaseapp.com',
+  databaseURL: 'https://lacanchita-55caa.firebaseio.com',
+  projectId: 'lacanchita-55caa',
+  storageBucket: 'lacanchita-55caa.appspot.com',
+  messagingSenderId: '187709839691'
 };
 // export const firebaseConfig = {
 //     apiKey: "AIzaSyDgR2n2SOpn0p9ONbMb6u4ypdbwAdVfVFE",
