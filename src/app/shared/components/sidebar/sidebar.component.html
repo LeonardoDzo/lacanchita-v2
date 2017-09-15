@@ -1,46 +1,56 @@
-<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
-    <ul class="list-group">
-        <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'dashboard' | translate }}
-        </a>
-        <a [routerLink]="['/tournaments']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-th-list"></i>&nbsp;{{ 'Torneos' | translate }}
-        </a>
-        <a [routerLink]="['/leagues']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-trophy"></i>&nbsp;{{ 'Ligas' | translate }}
-        </a>
-        <a [routerLink]="['/teams']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-address-book"></i>&nbsp;{{ 'Equipos' | translate }}
-        </a>
-        <a [routerLink]="['/matches']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-futbol-o" aria-hidden="true"></i>&nbsp;{{ 'Juegos' | translate }}
-        </a>
-        <a [routerLink]="['/players']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-users" aria-hidden="true"></i>&nbsp;{{ 'Jugadores' | translate }}
-        </a>
-        <div class="nested-menu">
-            <a class="list-group-item" (click)="addExpandClass('pages')">
-                <span><i class="fa fa-plus"></i>&nbsp; {{ 'menu' | translate }}</span>
+<nav *ngIf="user" class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
+    <ng-container *ngIf="user.rol == 0; then thenTemplate; else elseTemplate"></ng-container>
+    <ng-template #thenTemplate>
+        <ul class="list-group">
+            <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'dashboard' | translate }}
             </a>
-            <li class="nested" [class.expand]="showMenu === 'pages'">
-                <ul class="submenu">
-                    <li>
-                        <a href="javascript:void(0)"><span>{{ 'submenu' | translate }}</span></a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)"><span>{{ 'submenu' | translate }}</span></a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)"><span>{{ 'submenu' | translate }}</span></a>
-                    </li>
-                </ul>
-            </li>
-        </div>
-        <a [routerLink]="['/blank-page']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-file-o"></i>&nbsp;{{ 'blankpage' | translate }}
-        </a>
-        <a class="list-group-item more-themes" href="http://www.strapui.com/" >
-            {{ 'moretheme' | translate }}
-        </a>
-    </ul>
+            <a [routerLink]="['/tournaments']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-th-list"></i>&nbsp;{{ 'Torneos' | translate }}
+            </a>
+            <a [routerLink]="['/leagues']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-trophy"></i>&nbsp;{{ 'Ligas' | translate }}
+            </a>
+            <a [routerLink]="['/teams']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-address-book"></i>&nbsp;{{ 'Equipos' | translate }}
+            </a>
+            <a [routerLink]="['/matches']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-futbol-o" aria-hidden="true"></i>&nbsp;{{ 'Juegos' | translate }}
+            </a>
+            <a [routerLink]="['/players']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-users" aria-hidden="true"></i>&nbsp;{{ 'Jugadores' | translate }}
+            </a>
+            <div class="nested-menu">
+                <a class="list-group-item" (click)="addExpandClass('pages')">
+                    <span><i class="fa fa-plus"></i>&nbsp; {{ 'menu' | translate }}</span>
+                </a>
+                <li class="nested" [class.expand]="showMenu === 'pages'">
+                    <ul class="submenu">
+                        <li>
+                            <a href="javascript:void(0)"><span>{{ 'submenu' | translate }}</span></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)"><span>{{ 'submenu' | translate }}</span></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)"><span>{{ 'submenu' | translate }}</span></a>
+                        </li>
+                    </ul>
+                </li>
+            </div>
+            <a [routerLink]="['/blank-page']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-file-o"></i>&nbsp;{{ 'blankpage' | translate }}
+            </a>
+            <a class="list-group-item more-themes" href="http://www.strapui.com/" >
+                {{ 'moretheme' | translate }}
+            </a>
+        </ul>
+    </ng-template>
+    <ng-template #elseTemplate>
+        <ul class="list-group">
+            <a [routerLink]="['/teams']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-address-book"></i>&nbsp;{{ 'Equipos' | translate }}
+            </a>
+        </ul>
+    </ng-template>
 </nav>

@@ -10,7 +10,7 @@
   <md-card-actions>
    <button md-button (click)="onSelect()">Entrar</button>
    <button md-button (click)="onEdit(editTeam)">Editar</button>
-   <button md-button (click)="delete()">Eliminar</button>
+   <button [hidden]="!permissionForDelete" md-button (click)="delete()">Eliminar</button>
   </md-card-actions>
 </md-card>
 

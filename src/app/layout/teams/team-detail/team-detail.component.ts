@@ -1,3 +1,4 @@
+import { BsModalRef } from 'ngx-bootstrap/modal';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MdSnackBar } from '@angular/material';
@@ -13,6 +14,8 @@ import { ActivatedRoute, Router, Params } from '@angular/router';
 import { TeamService } from '../shared/team.service';
 import { League } from '../../leagues/shared/league';
 import { Player } from '../../players/shared/player';
+import { TournamentService } from '../../tournaments/shared/tournament.service';
+import { Tournament } from '../../tournaments/shared/tournament';
 
 @Component({
     selector: 'app-team-detail',
@@ -27,15 +30,22 @@ export class TeamDetailComponent implements OnInit {
     players: Player[] = []
     allPlayers: Player[] = []
     closeResult: string;
+    leaguesAvaible: League[] = []
+    disabled = true
+    public modalRef: BsModalRef
     constructor(private route: ActivatedRoute,
         private teamSvc: TeamService,
         private leagueSvc: LeagueService,
         private playerSvc: PlayerService,
         private router: Router,
         public snackBar: MdSnackBar,
-        private modalService: NgbModal) { }
+        private modalService: NgbModal,
+        private tournSvc: TournamentService) { }
 
     ngOnInit() {
+        if (localStorage.getItem('rol') == '0') {
+            this.disabled = false
+        }
         this.route.params
             // (+) converts string 'id' to a number
             .switchMap((params: Params) => this.teamSvc.getItem(params['id']))
@@ -46,6 +56,13 @@ export class TeamDetailComponent implements OnInit {
             });
         const query = {
         }
+        this.tournSvc.getItemsList({}).subscribe((tournaments: Tournament[] ) => {
+            console.log(tournaments)
+            const tournament = tournaments.find(t => t.active)
+            this.leagueSvc.getItemsList({}).subscribe((leagues: League[]) => {
+                this.leaguesAvaible = leagues.filter(l => l.tournamentId === tournament.$key)
+          })
+      })
         this.playerSvc.getItemsList(query).subscribe((players: Player[]) => {
             this.allPlayers = players.filter(p => {
                 if (p.teams !== undefined && p.teams[this.team.$key]) {
@@ -55,8 +72,19 @@ export class TeamDetailComponent implements OnInit {
             })
         })
     }
+    pickLeague(id) {
+        const val = {}
+        this.leaguesAvaible.forEach(l => {
+            if (l.$key === id) {
+                this.teamSvc.addLeague(this.team.$key, l.$key)
+            }else {
+                this.teamSvc.delteLeague(this.team.$key,  l.$key)
+            }
+        })
+    }
 
     getLeagues() {
+        this.leagues = []
         // tslint:disable-next-line:forin
         for (const i in this.team.leagues) {
             this.leagueSvc.getItem(i)
@@ -79,7 +107,7 @@ export class TeamDetailComponent implements OnInit {
         }
     }
     open(content) {
-        this.modalService.open(content).result.then((result) => {
+       this.modalService.open(content).result.then((result) => {
             this.closeResult = `Closed with: ${result}`;
         }, (reason) => {
             //

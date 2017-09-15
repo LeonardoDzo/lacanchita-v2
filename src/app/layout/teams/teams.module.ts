@@ -9,7 +9,8 @@ import { TeamsComponent } from './teams.component';
 import { TeamDetailComponent } from './team-detail/team-detail.component';
 import { TeamRoutingModule } from './team-routing.module';
 import { UploadModule } from '../../shared/modules/upload-module/upload-module.module';
-import { MdTabsModule, MdDialogModule, MdSlideToggleModule, MdCardModule, MdInputModule, MdSnackBarModule } from '@angular/material';
+import { MdTabsModule, MdDialogModule, MdSlideToggleModule, MdCardModule, MdInputModule, MdSnackBarModule, MdRadioModule } from '@angular/material';
+import { LeaguePickComponent } from './league-pick/league-pick.component';
 
 @NgModule({
   imports: [
@@ -26,8 +27,9 @@ import { MdTabsModule, MdDialogModule, MdSlideToggleModule, MdCardModule, MdInpu
     MdDialogModule,
     MdInputModule,
     MdSnackBarModule,
-    SharedPipesModule
+    SharedPipesModule,
+    MdRadioModule
   ],
-  declarations: [TeamsComponent, TeamDetailComponent]
+  declarations: [TeamsComponent, TeamDetailComponent, LeaguePickComponent]
 })
 export class TeamsModule { }

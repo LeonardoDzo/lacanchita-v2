@@ -10,7 +10,10 @@ import { routerTransition } from '../router.animations';
     animations: [routerTransition()]
 })
 export class LoginComponent implements OnInit {
-
+    model = {
+        pass: '',
+        email: ''
+    }
     constructor(public afService: AuthGuard, public router: Router) {
     }
 
@@ -22,16 +25,17 @@ export class LoginComponent implements OnInit {
             this.onLoggedin()
         })
     }
-    loginwithemail(event, email, password){
-    this.afService.loginwithemail(email,password).then((user) => {
-      this.router.navigate(['']);
-    }).catch((error)=> {
-      console.log(error.message)
-    })
-  }
+    loginwithemail() {
+        this.afService.loginwithemail(this.model.email, this.model.pass).then((user) => {
+            this.onLoggedin()
+        }).catch((error) => {
+            console.log(error.message)
+        })
+    }
 
     onLoggedin() {
         localStorage.setItem('isLoggedin', 'true');
+        localStorage.setItem('uid', this.afService.af.auth.currentUser.uid);
         this.router.navigate(['/']);
     }
 
