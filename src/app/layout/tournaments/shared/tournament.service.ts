@@ -34,7 +34,9 @@ export class TournamentService {
   updateItem(key: string, value: any, callback): void {
     this.Tournaments.update(key, value).then(snapshot => {
       callback(snapshot)
-    }) .catch(error => this.handleError(error))
+    }) .catch(error => {
+        callback(error.message)
+        this.handleError(error)})
   }
 
   addLeague(key:string, value:any):void {

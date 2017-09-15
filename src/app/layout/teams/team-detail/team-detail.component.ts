@@ -124,6 +124,7 @@ export class TeamDetailComponent implements OnInit {
             if (res) {
                 this.snackBar.open(`Jugador Agregado a`, this.team.title, {
                     duration: 2000,
+                    extraClasses: ['success']
                 });
                 this.getPlayers()
             } else {

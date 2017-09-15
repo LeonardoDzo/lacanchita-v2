@@ -14,6 +14,7 @@ export class TournamentFormComponent implements OnInit {
   constructor(private itemSvc: TournamentService) { }
 
   createTournament() {
+    this.tournament.active = false
     this.itemSvc.createItem(this.tournament)
     this.tournament = new Tournament() // reset item
   }
@@ -28,7 +29,7 @@ export class TournamentFormComponent implements OnInit {
       }
     })
   }
-  cancel(){
+  cancel() {
     this.tournamentEmmit.emit(this.tournamentInit)
   }
 }

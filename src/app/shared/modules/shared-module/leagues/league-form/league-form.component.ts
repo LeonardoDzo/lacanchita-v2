@@ -34,10 +34,10 @@ export class LeagueFormComponent implements OnInit {
       }
     })
   }
-  newLeague(){
+  newLeague() {
     this.league = new League() // reset item
   }
-  cancel(){
+  cancel() {
     this.objEmmit.emit(this.leagueInit)
   }
 

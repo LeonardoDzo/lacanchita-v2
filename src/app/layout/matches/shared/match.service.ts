@@ -33,9 +33,11 @@ export class MatchService {
   createItem(item: Match): void {
     this.db.app.database().ref(this.basePath).push(item).then(res => {
        //created game
-       var value = {}
+       const value = {}
        value[res.key] = true
-       this.journeySvc.addMatch(item.league, item.footballDay, value)
+       this.journeySvc.addMatch(item.league, item.footballDay, value, callback => {
+                alert('juego agregado')
+       })
     })
     .catch(error => this.handleError(error))
   }

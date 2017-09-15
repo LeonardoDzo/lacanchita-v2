@@ -7,12 +7,14 @@ import { FutbolDayFormComponent } from './futbol-day-form/futbol-day-form.compon
 import { FutbolDayItemComponent } from './futbol-day-item/futbol-day-item.component';
 import { FormsModule } from '@angular/forms';
 import { FutbolDayDetailComponent } from './futbol-day-detail/futbol-day-detail.component';
+import { MdTabsModule } from "@angular/material";
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    MatchSharedModule
+    MatchSharedModule,
+    MdTabsModule
   ],
   exports: [FutbolDayComponent,FutbolDayDetailComponent],
   declarations: [FutbolDayComponent,FutbolDayFormComponent,FutbolDayItemComponent,FutbolDayDetailComponent],

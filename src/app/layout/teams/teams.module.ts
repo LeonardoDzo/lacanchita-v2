@@ -10,7 +10,7 @@ import { TeamDetailComponent } from './team-detail/team-detail.component';
 import { TeamRoutingModule } from './team-routing.module';
 import { UploadModule } from '../../shared/modules/upload-module/upload-module.module';
 import { MdTabsModule, MdDialogModule, MdSlideToggleModule, MdCardModule, MdInputModule, MdSnackBarModule, MdRadioModule } from '@angular/material';
-import { LeaguePickComponent } from './league-pick/league-pick.component';
+
 
 @NgModule({
   imports: [
@@ -30,6 +30,6 @@ import { LeaguePickComponent } from './league-pick/league-pick.component';
     SharedPipesModule,
     MdRadioModule
   ],
-  declarations: [TeamsComponent, TeamDetailComponent, LeaguePickComponent]
+  declarations: [TeamsComponent, TeamDetailComponent]
 })
 export class TeamsModule { }

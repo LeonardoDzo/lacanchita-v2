@@ -23,22 +23,21 @@ export class PlayerFormComponent implements OnInit {
     ngOnInit() {
     }
     createPlayer() {
-        if (!this.player.imageUrl) {
-            alert('Suba la imagen')
-        } else {
-            if (this.team) {
-                this.player.teams[this.team.$key] = true
-            }
-            this.playerSvc.createItem(this.player, (p: Player) => {
-                if (p.$key) {
-                    this.playerEmit.emit(p)
-                    this.snackBar.open('Jugador Agregado', '', {
-                        duration: 2000,
-                    });
-                }
-            })
-            this.player = new Player() // reset item
+
+        if (this.team) {
+            this.player.teams[this.team.$key] = true
         }
+        this.playerSvc.createItem(this.player, (p: Player) => {
+            if (p.$key) {
+                this.playerEmit.emit(p)
+                this.snackBar.open('Jugador Agregado', '', {
+                    duration: 2000,
+                    extraClasses: ['success']
+                });
+            }
+        })
+        this.player = new Player() // reset item
+
     }
     handleImageUoload(event) {
         this.player.imageUrl = event.url

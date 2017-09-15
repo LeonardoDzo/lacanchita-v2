@@ -12,7 +12,8 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { CanDeactivateGuard } from './shared/guard/can-deactivate-guard.service';
-
+import {ToastModule} from 'ng2-toastr/ng2-toastr';
+import { SweetAlert2Module } from '@toverux/ngsweetalert2';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: Http) {
@@ -51,6 +52,8 @@ export const firebaseConfig = {
         AngularFireDatabaseModule,
         AngularFireAuthModule,
         AppRoutingModule,
+        ToastModule.forRoot(),
+        SweetAlert2Module,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,

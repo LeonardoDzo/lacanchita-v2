@@ -1,3 +1,6 @@
 .example-full-width {
   width: 100%;
 }
+::ng-deep snack-bar-container.success-sb {
+    background: green;
+}

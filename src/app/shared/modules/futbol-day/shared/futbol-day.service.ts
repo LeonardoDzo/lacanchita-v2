@@ -16,10 +16,9 @@ private basePath: string = '/journeys';
   }
 
   getItemsList(query = {}, lid:string): FirebaseListObservable<any[]> {
-    this.footballDays = this.db.list("leagues/"+lid+this.basePath, {
+    this.footballDays = this.db.list('leagues/' + lid + this.basePath, {
       query: query
     });
-    
     return this.footballDays
   }
   // Return a single observable item
@@ -29,11 +28,13 @@ private basePath: string = '/journeys';
     return this.footballDay
   }
 
-  createItem(item: FutbolDay, lid: string): void {
-   
-    this.db.app.database().ref("leagues/"+lid+this.basePath).push(item).then(res => {
+  createItem(item: FutbolDay, lid: string, callback) {
+    this.db.app.database().ref('leagues/' + lid + this.basePath).push(item).then(res => {
+        callback(true)
     })
-      .catch(error => this.handleError(error))
+      .catch(error => {this.handleError(error)
+        callback(false)
+    })
   }
   // Update an existing item
   updateItem(key: string, value: any, callback): void {
@@ -43,11 +44,12 @@ private basePath: string = '/journeys';
       })
       .catch(error => this.handleError(error))
   }
-  addMatch(lid: string, key: string, value: any): void {
-    this.db.app.database().ref("leagues/"+lid + "/"+ this.basePath + "/" + key + "/matches").update(value).then(a => {
-      console.log("save match")
+  addMatch(lid: string, key: string, value: any, callback): void {
+    this.db.app.database().ref("leagues/"+lid + "/" + this.basePath + "/" + key + "/matches").update(value).then(a => {
+        callback(true, 'juego guardado')
     }).catch(error => {
       this.handleError(error)
+      callback(false, error.message)
     })
   }
   // Deletes a single item
