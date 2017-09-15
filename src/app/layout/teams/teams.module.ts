@@ -9,7 +9,7 @@ import { TeamsComponent } from './teams.component';
 import { TeamDetailComponent } from './team-detail/team-detail.component';
 import { TeamRoutingModule } from './team-routing.module';
 import { UploadModule } from '../../shared/modules/upload-module/upload-module.module';
-import { MdTabsModule, MdDialogModule, MdSlideToggleModule, MdCardModule, MdInputModule, MdSnackBarModule } from '@angular/material';
+import { MdTabsModule, MdDialogModule, MdSlideToggleModule, MdCardModule, MdInputModule, MdSnackBarModule, MdRadioModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -26,7 +26,8 @@ import { MdTabsModule, MdDialogModule, MdSlideToggleModule, MdCardModule, MdInpu
     MdDialogModule,
     MdInputModule,
     MdSnackBarModule,
-    SharedPipesModule
+    SharedPipesModule,
+    MdRadioModule
   ],
   declarations: [TeamsComponent, TeamDetailComponent]
 })

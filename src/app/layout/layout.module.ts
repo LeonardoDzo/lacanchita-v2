@@ -17,6 +17,7 @@ import { FormsModule } from '@angular/forms';
 import { MatchService } from './matches/shared/match.service';
 import { FutbolDayService } from '../shared/modules/futbol-day/shared/futbol-day.service';
 import { PlayerService } from './players/shared/player.service';
+import { UserService } from './user/shared/user.service';
 
 @NgModule({
     imports: [
@@ -40,7 +41,8 @@ import { PlayerService } from './players/shared/player.service';
         UploadService,
         StadiumService,
         StandingService,
-        PlayerService
+        PlayerService,
+        UserService
     ]
 
 })

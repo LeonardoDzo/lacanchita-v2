@@ -11,6 +11,7 @@ export class FilterPipe implements PipeTransform {
         if (term) {
             term = term.toLowerCase();
         }
+        console.log(items)
         return term
             ? items.filter(item => item.team1.title.toLowerCase().indexOf(term) !== -1 || item.team2.title.toLowerCase().indexOf(term) !== -1 || item.league.title.toLowerCase().indexOf(term) !== -1 )
             : items;

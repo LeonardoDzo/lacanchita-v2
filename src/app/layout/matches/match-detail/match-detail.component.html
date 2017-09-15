@@ -68,7 +68,7 @@
   <md-chip-list>
     <md-chip>Arbitro: {{match.referi}}</md-chip>
     <md-chip>Fecha: {{match.startDate | date}}</md-chip>
-    <md-chip>Esadio {{stadium.name}}</md-chip>
+    <md-chip *ngIf="stadium" >Esadio {{stadium.name}}</md-chip>
 
     <md-chip [color]="warn" (click)="onEdit()">Editar</md-chip>
   </md-chip-list>

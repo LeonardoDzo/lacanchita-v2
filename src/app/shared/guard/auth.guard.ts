@@ -31,12 +31,25 @@ export class AuthGuard implements CanActivate {
    * @param model
    * @returns {firebase.Promise<void>}
    */
-  registerUser(email, password) {
+  registerUser(email, password, name, type) {
     console.log(email)
     return this.af.auth.createUserWithEmailAndPassword(
       email,
       password
-    );
+    ).then((user) => {
+        // User created now create Firebase Database user
+        return this.db.database.ref(`/users/${user.uid}`).update({
+            name: name,
+            email: email,
+            rol: type
+        });
+    }).then(() => {
+        this.router.navigate(['/login'])
+    }).catch((error) => {
+        // Error
+        alert(`Error: ${error}`)
+        console.log(error);
+    });
   }
   /**
    * Saves information to display to screen when user is logged in

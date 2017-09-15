@@ -16,7 +16,7 @@
                 <td>{{item.name}}</td>
                 <td>
                     <label class="float-right switch">
-                        <input [(ngModel)]="item.active" type="checkbox">
+                        <input (click)="pickLeague(item.id,$event)" [(ngModel)]="item.active" type="checkbox">
                         <div class="slider"></div>
                     </label>
                 </td>

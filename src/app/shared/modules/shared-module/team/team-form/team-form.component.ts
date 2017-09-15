@@ -4,17 +4,18 @@ import { FormsModule} from '@angular/forms';
 import { Team } from '../../../../../layout/teams/shared/team';
 import { League } from '../../../../../layout/leagues/shared/league';
 import { TeamService } from '../../../../../layout/teams/shared/team.service';
+import { AuthGuard } from '../../../../guard/auth.guard';
 @Component({
   selector: 'app-team-form',
   templateUrl: './team-form.component.html',
   styleUrls: ['./team-form.component.scss']
 })
 export class TeamFormComponent implements OnInit {
-  teamInit : Team;
+  teamInit: Team;
   @Input() team: Team = new Team();
   @Input() league: League;
   @Output() objEmmit = new EventEmitter()
-  constructor(private teamSvc: TeamService) { }
+  constructor(private teamSvc: TeamService, private af: AuthGuard) { }
 
   ngOnInit() {
     this.teamInit = Object.assign({}, this.team);
@@ -22,17 +23,14 @@ export class TeamFormComponent implements OnInit {
   }
 
   createTeam() {
-    if (!this.team.imageUrl){
-      alert("Por favor suba una imagen antes")
-    }else{
-       if(this.league){
+       this.team.createdBy = this.af.af.auth.currentUser.uid
+       if (this.league) {
           this.team.leagues[this.league.$key] = true
           this.teamSvc.createItem(this.team, this.league.$key)
           this.league = new League() // reset item
-       }else{
+       }else {
          this.teamSvc.createItem(this.team)
        }
-    } 
   }
   update() {
     this.teamSvc.updateItem(this.team.$key, this.team, (upload) => {

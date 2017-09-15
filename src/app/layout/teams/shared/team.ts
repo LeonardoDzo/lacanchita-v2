@@ -7,8 +7,9 @@ export class Team {
     dateCreated: number;
     active = true;
     players: any[] = [];
-    leagues: any[];
+    leagues: any[] = [];
     imageUrl: string;
+    createdBy: string;
     // tslint:disable-next-line:one-line
     constructor(){
         this.dateCreated =  new Date().getTime()
