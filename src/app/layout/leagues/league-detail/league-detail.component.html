@@ -1,6 +1,6 @@
 <div [@routerTransition] *ngIf="league" class="container">
   <h1>
-   Liga <b>{{league.title || '' }}</b>
+      <b>Liga:</b> {{league.title || '' }}
   </h1>
   <md-tab-group>
     <md-tab label="Jornadas">
@@ -11,7 +11,7 @@
     <md-tab label="Equipos">
       <div class="row">
         <h1 *ngIf="!league">
-          <b>Todas los Equipos</b>
+          <b>Todos los Equipos</b>
         </h1>
       </div>
       <div *ngIf="league" class="row">

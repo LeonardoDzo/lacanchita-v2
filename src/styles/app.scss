@@ -5,7 +5,9 @@
 @import "rtl";
 @import "responsive";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-
+body{
+  background: #B6BCC4;
+}
 .sortable-item{
   width: 32%;
   height: 100px;

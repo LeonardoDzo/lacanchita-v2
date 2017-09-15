@@ -31,16 +31,8 @@
             </div>
             <hr>
             <div class="row align-items-start">
-                <!--<div class="col box">
-                    <h4> Otros jugadores aquí</h4>
-                    <div class="row align-items-start">
-                        <md-card class="cardPlayer" *ngFor="let p of allPlayers">
-                            <app-player-item2 [player]=p></app-player-item2>
-                        </md-card>
-                    </div>
-                </div>-->
                 <div class="col box">
-                    Jugadores del equipo {{team.title}}
+                    <h3>Jugadores del equipo {{team.title}}</h3>
                     <div class="row align-items-start">
                         <md-card class="cardPlayer" *ngFor="let p of players">
                             <app-player-item2 [player]=p></app-player-item2>

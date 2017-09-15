@@ -1,6 +1,7 @@
 <div class="card">
   <div class="card-header">
-    <strong>Crear Torneo</strong>
+    <strong *ngIf="tournament.$key">Editar Torneo</strong>
+    <strong *ngIf="!tournament.$key">Crear Torneo</strong>
   </div>
   <div class="card-block">
     <div class="form-inline">

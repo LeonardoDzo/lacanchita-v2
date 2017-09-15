@@ -1,17 +1,14 @@
-
 <md-card class="example-card">
-  <md-card-header>
-    <md-card-title>{{team.title}}</md-card-title>
-  </md-card-header>
-  <img class="md-card-image example-header-image" style="width:150px; height:150px;" onerror="this.src='./assets/images/none.png'"
-    [src]="team.imageUrl" alt="user avatar" >
+  <img class="md-card-image example-header-image" onerror="this.src='./assets/images/none.png'"
+    [src]="team.imageUrl" alt="team logo" >
   <md-card-content>
+      <h2>{{team.title}}</h2>
+      <md-card-actions>
+        <button md-button (click)="onSelect()">Entrar</button>
+        <button md-button (click)="onEdit(editTeam)">Editar</button>
+        <button md-button (click)="delete()">Eliminar</button>
+      </md-card-actions>
   </md-card-content>
-  <md-card-actions>
-   <button md-button (click)="onSelect()">Entrar</button>
-   <button md-button (click)="onEdit(editTeam)">Editar</button>
-   <button md-button (click)="delete()">Eliminar</button>
-  </md-card-actions>
 </md-card>
 
 <ng-template #editTeam let-c="close" let-d="dismiss">

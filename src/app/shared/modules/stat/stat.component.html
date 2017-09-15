@@ -1,14 +1,8 @@
 <div *ngIf="team" class="card card-style">
-    <img class="card-img-top" class="md-card-image example-header-image" style="max-height:200px; " onerror="this.src='./assets/images/none.png'"
+    <img class="card-img-top" class="md-card-image example-header-image" onerror="this.src='./assets/images/none.png'"
         [src]="team.imageUrl" alt="Card image cap">
     <div class="card-block">
         <h4 class="card-title">{{team.title}}</h4>
-        <span class="float-left">Activar</span>
-        <label class="float-right switch">
-             <input [(ngModel)]="team.active" type="checkbox">
-             <div class="slider"></div>
-        </label>    
-        <br>
         <hr>
         <table class="table">
             <thead>
@@ -30,5 +24,4 @@
             </tbody>
         </table>
     </div>
-
 </div>

@@ -5,8 +5,7 @@
 </div>
 
 <ng-template #thenTemplate>
-  <h3> <b>{{ tournament.title || 'missing title' }}</b></h3>
-  <h4>Activo: {{ tournament.active }}</h4>
+  <h3> <b>{{ tournament.title || 'missing title' }}</b> <label class="active" *ngIf="tournament.active">Activo</label></h3>
   <button type="button" class="btn btn-info" (click)="onSelect(tournament)">Entrar</button>
   <button type="button" class="btn btn-warning" (click)="onEdit(tournament)">Editar</button>
   <button type="button" class="btn btn-danger" (click)='deleteItem()'>Eliminar</button>

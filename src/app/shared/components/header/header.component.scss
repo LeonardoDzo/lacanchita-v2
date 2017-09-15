@@ -70,3 +70,7 @@ $topnav-background-color: #222;
 .header .navbar {
     background: $topnav-background-color !important;
 }
+
+.navbar-brand img{
+    max-height: 40px;
+}
