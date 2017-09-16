@@ -29,7 +29,7 @@ export class TournamentDetailsComponent implements OnInit {
       .subscribe((tournament: Tournament) => {
         this.tournament = tournament
         this.leagueSvc.getItemsList({
-          limitToLast: 10,
+          limitToLast: 20,
           orderByChild: "tournamentId",
           equalTo: tournament.$key
         }).subscribe((leagues: [League]) => {

@@ -21,7 +21,7 @@ export class LeaguesComponent implements OnInit {
 
   ngOnInit() {
     this.leagueSvc.getItemsList({
-      limitToLast: 10
+      limitToLast: 20
     }).subscribe((leagues: [League]) => {
       this.leagues = leagues
     })

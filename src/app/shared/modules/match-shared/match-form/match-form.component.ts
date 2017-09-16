@@ -47,20 +47,24 @@ export class MatchFormComponent implements OnInit {
       this.stadiums = stadiums.filter(s => s.active)
     })
     var query = {
-      limitToLast: 10,
+      limitToLast: 20,
       orderByChild: "footballDay",
       equalTo: this.footballday.$key
     };
     this.matchSvc.getItemsList(query).subscribe((matches: Match[]) => {
       this.matches = matches
       this.matches.forEach(match => {
-        this.teams = this.teams.filter(t=>t.$key != match.team1).filter(t=>t.$key != match.team2)
+        this.teams = this.teams.filter(t=>t.$key != match.team1).filter(t => t.$key != match.team2)
       })
     })
 
   }
   onSubmit() {
-    if (this.team1[0].$key && this.team2[0].$key) {
+    if (this.team1[1] || this.team2[1] ){
+        alert('Por favor ingresar un equipo en cada lado, verifique la información')
+        return
+    }
+    if (this.team1[0] && this.team2[0]) {
       this.match.team1 = this.team1[0].$key
       this.match.team2 = this.team2[0].$key
       this.match.startDate = new Date(this.match.startDate).getTime()
@@ -69,6 +73,9 @@ export class MatchFormComponent implements OnInit {
       this.matchSvc.createItem(this.match)
       this.team1 = null
       this.team2 = null 
+    }else{
+        alert('Por favor ingresar un equipo en cada lado, verifique la información')
+        return
     }
     
   }

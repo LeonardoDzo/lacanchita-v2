@@ -1,16 +1,24 @@
-<md-card *ngIf="league">
-  <md-card-content>
-    <div *ngIf="!selectedLeague; then thenTemplate; else elseTemplate"></div>
-  </md-card-content>
-</md-card> 
+<md-card *ngIf="league" class="desactive" [ngClass]="{'active': league.active }">
+    <md-card-content>
+        <div class="row">
+            <div class="col-sm-8">
+                <md-card-title>{{league.title}}</md-card-title>
+            </div>
+            <div class="col-sm-4">
+                <label class="switch">
+                                    <input [ngModel]="league.active"  (ngModelChange)="activate($event)" type="checkbox">
+                                    <div class="slider" ></div>
+                                  </label>
+            </div>
+        </div>
 
-<ng-template #thenTemplate>
-  <md-card-title>{{league.title}}</md-card-title>
-  <p class="card-text">Equipos que pasan: {{league.teamsQualifiers}}</p>
-  <a md-raised-button (click)="onSelect(league)">Entrar</a>
-  <a md-raised-button (click)="onEdit(league)">Editar</a>
-  <a md-raised-button (click)='deleteItem()'>Eliminar</a>
-</ng-template>
-<ng-template #elseTemplate>
-   <app-league-form [tournament]='tournament' [league]='league' (objEmmit)='updated($event)'></app-league-form>
+        <p class="card-text">Equipos que pasan: {{league.teamsQualifiers}}</p>
+        <a md-raised-button (click)="onSelect(league)">Entrar</a>
+        <a md-raised-button (click)="onEdit(league, content)">Editar</a>
+        <a md-raised-button (click)='deleteItem()'>Eliminar</a>
+    </md-card-content>
+</md-card>
+
+<ng-template #content>
+    <app-league-form [tournament]='tournament' [league]='league' (objEmmit)='updated($event)'></app-league-form>
 </ng-template>

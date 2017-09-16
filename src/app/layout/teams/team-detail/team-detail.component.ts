@@ -33,6 +33,7 @@ export class TeamDetailComponent implements OnInit {
     leaguesAvaible: League[] = []
     disabled = true
     public modalRef: BsModalRef
+
     flagEdit: boolean;
     constructor(private route: ActivatedRoute,
         private teamSvc: TeamService,
@@ -128,6 +129,7 @@ export class TeamDetailComponent implements OnInit {
             if (res) {
                 this.snackBar.open(`Jugador Agregado a`, this.team.title, {
                     duration: 2000,
+                    extraClasses: ['success']
                 });
                 this.getPlayers()
             } else {

@@ -1,10 +1,15 @@
 
 <hr>
 <div [@routerTransition] *ngIf="matches">
-    <app-match-form [teams]="teams" [matches]="matches"></app-match-form>
+        <md-tab-group>
+                <md-tab label="Crear Juegos"> <app-match-form [teams]="teams" [matches]="matches"></app-match-form></md-tab>
+                <md-tab label="Ver Juegos"><div class="container">
+                        <div class="card-group" >
+                            <app-match-item *ngFor="let match of matches" [match]="match" class="col-lg-6"></app-match-item>
+                        </div>
+                    </div>
+                </md-tab>
+              </md-tab-group>
+   
 </div>
-<div class="container">
-    <div class="card-group" >
-        <app-match-item *ngFor="let match of matches" [match]="match" class="col-lg-6"></app-match-item>
-    </div>
-</div>
+

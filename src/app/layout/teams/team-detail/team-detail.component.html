@@ -12,10 +12,12 @@
                 <div class="col-4"><img class="md-card-image example-header-image" style="width:150px; height:150px;" onerror="this.src='./assets/images/none.png'"
                         [src]="team.imageUrl" alt="user avatar"></div>
                 <div class="col-6">
-                    <button class="btn btn-primary" (click)="open(content2)">Escoger Liga</button>
+                        <button class="btn btn-primary" (click)="open(content2)">Escoger Liga</button>
+                    <hr>
+
                     <h4>Ligas en las que participa</h4>
                     <div *ngFor="let l of leagues" class="row">
-                        <md-slide-toggle [checked]="team.leagues[l.$key]">
+                        <md-slide-toggle disabled=disabled [checked]="team.leagues[l.$key]">
                             {{l.title}}
                         </md-slide-toggle>
                     </div>
@@ -47,9 +49,10 @@
 <ng-template #content let-c="close" let-d="dismiss">
     <app-player-form (playerEmit)="playerCreated($event)"></app-player-form>
 </ng-template>
+
 <ng-template #content2 let-c="close" let-d="dismiss">
-        <h2>Escoger Liga</h2>
-        <ul *ngFor="let item of leaguesAvaible">
-            <li><button class="btn btn-primary" (click)="pickLeague(item.$key)" >Seleccionar</button>  <b>{{item.title}} </b>  </li>
-        </ul>
- </ng-template>
+       <h2>Escoger Liga</h2>
+       <ul *ngFor="let item of leaguesAvaible">
+           <li><button class="btn btn-primary" (click)="pickLeague(item.$key)" >Seleccionar</button>  <b>{{item.title}} </b>  </li>
+       </ul>
+</ng-template>

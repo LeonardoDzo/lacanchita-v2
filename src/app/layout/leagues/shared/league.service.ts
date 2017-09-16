@@ -62,7 +62,7 @@ export class LeagueService {
   }
   // Deletes a single item
   deleteItem(key: string): void {
-      this.db.database.ref(`${this.basePath}/${key}/active`).update(false)
+      this.db.database.ref(`${this.basePath}/${key}/`).update({'active': false})
     // this.leagues.remove(key)
     //   .catch(error => this.handleError(error))
   }

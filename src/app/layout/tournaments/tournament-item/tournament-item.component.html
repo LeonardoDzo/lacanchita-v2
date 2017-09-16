@@ -1,15 +1,27 @@
-<div class="card">
-  <div class="card-block">
-    <div *ngIf="!selectedTournament; then thenTemplate; else elseTemplate"></div>
-  </div>
+<div class="card desactive" [ngClass]="{'active': tournament.active}">
+    <div class="card-block">
+        <div *ngIf="!selectedTournament; then thenTemplate; else elseTemplate"></div>
+    </div>
 </div>
 
 <ng-template #thenTemplate>
-  <h3> <b>{{ tournament.title || 'missing title' }}</b> <label class="active" *ngIf="tournament.active">Activo</label></h3>
-  <button type="button" class="btn btn-info" (click)="onSelect(tournament)">Entrar</button>
-  <button type="button" class="btn btn-warning" (click)="onEdit(tournament)">Editar</button>
-  <button type="button" class="btn btn-danger" (click)='deleteItem()'>Eliminar</button>
+
+    <div class="row">
+        <div class="col-sm-8">
+            <h3> <b>{{ tournament.title || 'missing title' }}</b> </h3>
+        </div>
+        <div class="col-sm-4">
+            <label class="switch">
+                        <input [ngModel]="tournament.active"  (ngModelChange)="activate($event)" type="checkbox">
+                        <div class="slider" ></div>
+                      </label>
+        </div>
+    </div>
+
+    <button type="button" class="btn btn-info" (click)="onSelect(tournament)">Entrar</button>
+    <button type="button" class="btn btn-warning" (click)="onEdit(tournament)">Editar</button>
+    <button type="button" class="btn btn-danger" (confirm)='deleteItem()'>Eliminar</button>
 </ng-template>
 <ng-template #elseTemplate>
-  <app-tournament-form [tournament]='selectedTournament' (tournamentEmmit)='updated($event)'></app-tournament-form>
+    <app-tournament-form [tournament]='selectedTournament' (tournamentEmmit)='updated($event)'></app-tournament-form>
 </ng-template>

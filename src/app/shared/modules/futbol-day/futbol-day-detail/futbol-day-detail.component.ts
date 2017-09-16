@@ -28,14 +28,14 @@ export class FutbolDayDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    var lid: string;
+    let lid: string;
 
     this.route.queryParams.subscribe(params => {
       lid = params['lid']
       console.log(lid)
-      var query = {
-        limitToLast: 10,
-        orderByChild: "leagues/" + lid,
+      const query = {
+        limitToLast: 20,
+        orderByChild: 'leagues/' + lid,
         equalTo: true
       };
       this.teamSvc.getItemsList(query)
@@ -48,9 +48,9 @@ export class FutbolDayDetailComponent implements OnInit {
         this.footballSvc.getItem(params['id'], lid))
       .subscribe((footday: FutbolDay) => {
         this.footballday = footday
-        var query = {
-          limitToLast: 10,
-          orderByChild: "footballDay",
+        const query = {
+          limitToLast: 20,
+          orderByChild: 'footballDay',
           equalTo: this.footballday.$key
         };
         this.matchSvc.getItemsList(query).subscribe((matches: Match[]) => {

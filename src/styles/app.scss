@@ -5,8 +5,24 @@
 @import "rtl";
 @import "responsive";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 body{
   background: #B6BCC4;
+}
+
+
+
+::ng-deep snack-bar-container.success {
+    background: green;
+}
+::ng-deep snack-bar-container.error {
+    background: red;
+}
+::ng-deep snack-bar-container.warning {
+    background: yellow;
+}
+::ng-deep snack-bar-container.default {
+    background: gray;
 }
 .sortable-item{
   width: 32%;

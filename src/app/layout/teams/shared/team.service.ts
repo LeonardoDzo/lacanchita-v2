@@ -112,9 +112,7 @@ export class TeamService {
             if($0.length>0){
                 $0.forEach(item=>{
                     if(item.hasOwnProperty("leagues")){
-                        if(item.leagues.count()>0){
                             console.log(item.leagues)
-                        }
                         /*var aux = item.leagues.filter(
                             $0 => $0.$key === false)
                             console.log(aux)*/

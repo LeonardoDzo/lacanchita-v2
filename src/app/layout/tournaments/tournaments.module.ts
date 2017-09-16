@@ -7,11 +7,11 @@ import { TournamentService } from './shared/tournament.service';
 import { TournamentItemComponent } from './tournament-item/tournament-item.component';
 import { TournamentRoutingModule } from './tournament-routing.module';
 import { TournamentFormComponent } from './tournament-form/tournament-form.component';
-import { NgbAccordionModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule, NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { TournamentDetailsComponent } from './tournament-details/tournament-details.component';
-import { MdCardModule } from '@angular/material';
+import { MdCardModule, MdSnackBarModule } from '@angular/material';
 import { PageHeaderComponent } from '../../shared/modules/page-header/page-header.component';
 import { TournamentsComponent } from './tournaments.component';
 import { SharedModuleModule } from '../../shared/modules/shared-module/shared-module.module';
@@ -25,7 +25,9 @@ import { SharedModuleModule } from '../../shared/modules/shared-module/shared-mo
         PageHeaderModule,
         NgbAccordionModule,
         MdCardModule,
+        MdSnackBarModule,
         SharedModuleModule,
+        NgbModalModule,
         NgbModule.forRoot()
     ],
     declarations: [

@@ -22,9 +22,8 @@ export class TournamentsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.tournaments = this.tournamentSvc.getItemsList({ limitToLast: 10 })
+    this.tournaments = this.tournamentSvc.getItemsList({ limitToLast: 20 })
   }
- 
   deleteItems() {
     this.tournamentSvc.deleteAll()
   }

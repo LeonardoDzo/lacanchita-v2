@@ -1,7 +1,9 @@
 import { AuthGuard } from '../shared/guard/auth.guard';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { routerTransition } from '../router.animations';
+import { ToastsManager } from 'ng2-toastr';
+import { MdSnackBar } from '@angular/material';
 
 @Component({
     selector: 'app-login',
@@ -14,12 +16,11 @@ export class LoginComponent implements OnInit {
         pass: '',
         email: ''
     }
-    constructor(public afService: AuthGuard, public router: Router) {
+    constructor(public afService: AuthGuard, public router: Router, public snackBar: MdSnackBar) {
     }
 
     ngOnInit() {
     }
-
     login() {
         this.afService.login().then((data) => {
             this.onLoggedin()
@@ -27,8 +28,16 @@ export class LoginComponent implements OnInit {
     }
     loginwithemail() {
         this.afService.loginwithemail(this.model.email, this.model.pass).then((user) => {
+            this.snackBar.open('Bienvenido', '', {
+                duration: 4000,
+                extraClasses: ['success']
+            });
             this.onLoggedin()
         }).catch((error) => {
+            this.snackBar.open(error.message, '', {
+                duration: 4000,
+                extraClasses: ['error']
+            });
             console.log(error.message)
         })
     }

@@ -1,4 +1,3 @@
-
 <nav *ngIf="user" class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
     <ng-container *ngIf="user.rol == 0; then thenTemplate; else elseTemplate"></ng-container>
     <ng-template #thenTemplate>
